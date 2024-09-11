@@ -86,4 +86,4 @@ app.use('/Model', ModeRoute);
  */
 
 // Server listens on https://play-bricks.vercel.app
-app.listen(5000);
+module.exports = app;
