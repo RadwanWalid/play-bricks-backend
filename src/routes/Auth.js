@@ -43,7 +43,7 @@ router.get('/', (req, res, next) => {
 });
 
 
-// When you visit http://localhost:3000/login, you will see "Login Page"
+// When you visit http://https://play-bricks.vercel.app/login, you will see "Login Page"
 router.get('/login', (req, res, next) => {
     const form = '<h1>Login Page</h1><form method="POST" action="/Auth/login">\
     Enter Username:<br><input type="text" name="username">\
@@ -54,7 +54,7 @@ router.get('/login', (req, res, next) => {
 
 });
 
-// When you visit http://localhost:3000/register, you will see "Register Page"
+// When you visit http://https://play-bricks.vercel.app/register, you will see "Register Page"
 router.get('/register', (req, res, next) => {
 
     const form = '<h1>Register Page</h1><form method="post" action="/Auth/register">\
