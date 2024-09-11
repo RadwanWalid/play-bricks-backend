@@ -33,7 +33,7 @@ app.use(function (req, res, next) {
 });
 
 app.use(cors({
-  origin: "https://play-bricks.vercel.app",
+  origin: "https://play-bricks.vercel.app/",
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,
 }));
