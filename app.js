@@ -3,18 +3,18 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 var passport = require('passport');
 var crypto = require('crypto');
-var AuthRoute = require('./routes/Auth');
-var UserRoute = require('./routes/User');
-var ModeRoute = require('./routes/Model');
+var AuthRoute = require('./src/routes/Auth');
+var UserRoute = require('./src/routes/User');
+var ModeRoute = require('./src/routes/Model');
 const cors = require("cors");
 
-const connection = require('./config/database');
+const connection = require('./src/config/database');
 
 // Package documentation - https://www.npmjs.com/package/connect-mongo
 const MongoStore = require('connect-mongo')(session);
 
 // Need to require the entire Passport config module so app.js knows about it
-require('./config/passport');
+require('./src/config/passport');
 /**
  * -------------- GENERAL SETUP ----------------
  */
@@ -72,14 +72,14 @@ app.use(passport.session());
  */
 
 app.get("/", (req, res) => {
-  res.send("Home page")
+  res.send("Hello backend")
 })
 
 app.use('/Auth', AuthRoute);
 app.use('/User', UserRoute);
 app.use('/Model', ModeRoute);
 
-// Imports all of the routes from ./routes/index.js
+// Imports all of the routes from ./src/routes/index.js
 
 
 /**
