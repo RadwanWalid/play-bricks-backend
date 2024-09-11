@@ -21,19 +21,27 @@ require('./src/config/passport');
 // Gives us access to variables set in the .env file via `process.env.VARIABLE_NAME` syntax
 require('dotenv').config();
 
+const allowedOrigins = ['https://play-bricks.vercel.app', 'http://localhost:3000'];
+
 // Create the Express application
 var app = express();
 app.use(express.json({limit: '200mb'}));
 app.use(express.urlencoded({limit: '200mb', extended: true }));
 app.use(function (req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', ['https://play-bricks.vercel.app', 'http://localhost:3000']);
+  res.setHeader('Access-Control-Allow-Origin', allowedOrigins);
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers');
   next();
 });
 
 app.use(cors({
-  origin: "*",
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,
 }));
